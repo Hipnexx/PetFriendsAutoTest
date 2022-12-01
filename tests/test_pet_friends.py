@@ -129,7 +129,7 @@ def test_add_new_pet_with_invalid_pet_data(name='', animal_type='',
 
     # Проверяем возможность добавления питомца по заданным параметрам
     if pf.add_new_pet(auth_key, name, animal_type, age, pet_photo):
-        pass
+        print("Ошибка! Питомец не должен быть добавлен!")
     else:
         # если поля пустые - вызываем ошибку
         raise FileNotFoundError("Заполните обязательные поля!")
