@@ -102,6 +102,7 @@ def test_add_pet_photo_with_invalid_format(pet_photo='images/textfile.docx'):
 
         # Проверяем что статус ответа = 500
         assert status == 500
+        print("Изображение должно быть формата jpg/jpeg!")
     else:
         # если спиок питомцев пустой, то выкидываем исключение с текстом об отсутствии своих питомцев
         raise Exception("There is no my pets")
