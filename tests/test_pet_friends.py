@@ -53,7 +53,7 @@ def test_get_all_pets_with_wrong_parameter(filter='my_pet'):
 
     # Отправляем запрос и сохраняем полученный ответ с кодом статуса в status, а текст ответа в result
     _, auth_key = pf.get_api_key(email = valid_email, password = valid_password)
-    status, result = pf.get_list_of_pets_with_invalid_parameter(auth_key, filter)
+    status, result = pf.get_list_of_pets(auth_key, filter)
 
     # Сверяем полученные данные с нашими ожиданиями
     assert status == 500
@@ -98,7 +98,7 @@ def test_add_pet_photo_with_invalid_format(pet_photo='images/textfile.docx'):
 
     # Если есть питомец, то пробуем добавить фото
     if len(my_pets['pets']) > 0:
-        status, result = pf.add_pet_photo_with_invalid_format(auth_key, my_pets['pets'][0]['id'], pet_photo)
+        status, result = pf.add_pet_photo(auth_key, my_pets['pets'][0]['id'], pet_photo)
 
         # Проверяем что статус ответа = 500
         assert status == 500
@@ -120,15 +120,15 @@ def test_add_new_pet_with_valid_data(name='Ниня', animal_type='Ориент�
     # Сверяем полученный ответ с ожидаемым результатом
     assert status == 200
     assert result['name'] == name
-    
+
 def test_add_new_pet_with_invalid_pet_data(name='', animal_type='',
                                      age='', pet_photo='images/Ninya1.jpg'):
-    """ Проверяем что можно добавить питомца с некорректными данными """
+    """Проверяем что можно добавить питомца с некорректными данными"""
 
     # Запрашиваем ключ api и сохраняем в переменую auth_key
     _, auth_key = pf.get_api_key(valid_email, valid_password)
 
-    # Проверяем возможность добавления питомца по заданным параметрам
+    # Добавляем питомца по заданным параметрам
     if pf.add_new_pet(auth_key, name, animal_type, age, pet_photo):
         print("Ошибка! Питомец не должен быть добавлен!")
     else:
@@ -137,7 +137,7 @@ def test_add_new_pet_with_invalid_pet_data(name='', animal_type='',
 
 def test_add_new_pet_without_pet_photo(name='Ниня', animal_type='Ориентальная кошка',
                                      age='1', pet_photo=''):
-    """ Проверяем что можно добавить питомца без фото """
+    """Проверяем что можно добавить питомца без фото"""
 
     # Запрашиваем ключ api и сохраняем в переменую auth_key
     _, auth_key = pf.get_api_key(valid_email, valid_password)
