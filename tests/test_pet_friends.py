@@ -109,9 +109,6 @@ def test_add_new_pet_with_valid_data(name='Ниня', animal_type='Ориент�
                                      age='1', pet_photo='images/Ninya1.jpg'):
     """Проверяем что можно добавить питомца с корректными данными"""
 
-    # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
-    #pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
-
     # Запрашиваем ключ api и сохраняем в переменую auth_key
     _, auth_key = pf.get_api_key(valid_email, valid_password)
 
