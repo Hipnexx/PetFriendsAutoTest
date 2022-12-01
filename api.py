@@ -78,24 +78,6 @@ class PetFriends:
             result = res.text
         return status, result
 
-    def get_list_of_pets_with_invalid_parameter(self, auth_key: json, filter: str = "") -> json:
-        """Метод делает запрос к API сервера и возвращает статус запроса и результат в формате JSON
-        со списком наденных питомцев, совпадающих с фильтром. На данный момент фильтр может иметь
-        либо пустое значение - получить список всех питомцев, либо 'my_pets' - получить список
-        собственных питомцев"""
-
-        headers = {'auth_key': auth_key['key']}
-        filter = {'filter': filter}
-
-        res = requests.get(self.base_url + 'api/pets', headers=headers, params=filter)
-        status = res.status_code
-        result = ""
-        try:
-            result = res.json()
-        except json.decoder.JSONDecodeError:
-            result = res.text
-        return status, result
-
     def add_new_pet_simple(self, auth_key: json, name: str, animal_type: str, age: str) -> json:
         """Метод отправляет (постит) на сервер данные о добавляемом питомце без изображения и возвращает статус
         запроса на сервер и результат в формате JSON с данными добавленного питомца"""
@@ -124,26 +106,6 @@ class PetFriends:
         data = MultipartEncoder(
             fields={
                 'pet_photo': (pet_photo, open(pet_photo, 'rb'), 'image/jpeg')
-            })
-        headers = {'auth_key': auth_key['key'], 'Content-Type': data.content_type}
-
-        res = requests.post(self.base_url + 'api/pets/set_photo/' + pet_id, headers=headers, data=data)
-        status = res.status_code
-        result = ""
-        try:
-            result = res.json()
-        except json.decoder.JSONDecodeError:
-            result = res.text
-        print(result)
-        return status, result
-
-    def add_pet_photo_with_invalid_format(self, auth_key: json, pet_id: str, pet_photo: str) -> json:
-        """Метод отправляет (постит) на сервер данные о добавленном изображении к записи о питомце
-        и возвращает статус запроса на сервер и результат в формате JSON"""
-
-        data = MultipartEncoder(
-            fields={
-                'pet_photo': (pet_photo, open(pet_photo, 'rb'), 'docx')
             })
         headers = {'auth_key': auth_key['key'], 'Content-Type': data.content_type}
 
