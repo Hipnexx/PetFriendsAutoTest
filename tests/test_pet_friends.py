@@ -120,7 +120,7 @@ def test_add_new_pet_with_valid_data(name='Ниня', animal_type='Ориент�
     assert status == 200
     assert result['name'] == name
     
-def test_add_new_pet_without_pet_data(name='', animal_type='',
+def test_add_new_pet_with_invalid_pet_data(name='', animal_type='',
                                      age='', pet_photo='images/Ninya1.jpg'):
     """ Проверяем что можно добавить питомца с некорректными данными """
 
