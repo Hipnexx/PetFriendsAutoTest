@@ -118,6 +118,31 @@ def test_add_new_pet_with_valid_data(name='Ниня', animal_type='Ориент�
     # Сверяем полученный ответ с ожидаемым результатом
     assert status == 200
     assert result['name'] == name
+    
+def test_add_new_pet_without_pet_data(name='', animal_type='',
+                                     age='', pet_photo='images/Ninya1.jpg'):
+    """ Проверяем что можно добавить питомца с некорректными данными """
+
+    # Запрашиваем ключ api и сохраняем в переменую auth_key
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+
+    # Проверяем возможность добавления питомца по заданным параметрам
+    if pf.add_new_pet(auth_key, name, animal_type, age, pet_photo):
+        pass
+    else:
+        # если поля пустые - вызываем ошибку
+        raise FileNotFoundError("Заполните обязательные поля!")
+
+def test_add_new_pet_without_pet_photo(name='Ниня', animal_type='Ориентальная кошка',
+                                     age='1', pet_photo=''):
+    """ Проверяем что можно добавить питомца без фото """
+
+    # Запрашиваем ключ api и сохраняем в переменую auth_key
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+
+    # Проверяем на ошибку
+    with pytest.raises(FileNotFoundError):
+        pf.add_new_pet(auth_key, name, animal_type, age, pet_photo)
 
 def test_successful_delete_self_pet():
     """Проверяем возможность удаления питомца"""
