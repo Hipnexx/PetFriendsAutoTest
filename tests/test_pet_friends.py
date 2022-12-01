@@ -42,7 +42,7 @@ def test_get_all_pets_with_invalid_key(filter=''):
 
     # Отправляем запрос и сохраняем полученный ответ с кодом статуса в status, а текст ответа в result
     _, auth_key = pf.get_api_key(email='', password='')
-    status, result = pf.get_list_of_pets(auth_key, filter)
+    status, result = pf.get_list_of_pets_with_invalid_key(auth_key, filter)
 
     # Сверяем полученные данные с нашими ожиданиями
     assert status == 403
