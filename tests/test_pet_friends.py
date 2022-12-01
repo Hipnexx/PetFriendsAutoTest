@@ -109,7 +109,7 @@ def test_add_pet_photo_with_invalid_format(pet_photo='images/textfile.docx'):
 
 def test_add_new_pet_with_valid_data(name='Ниня', animal_type='Ориентальная кошка',
                                      age='1', pet_photo='images/Ninya1.jpg'):
-    """Проверяем что можно добавить питомца с корректными данными"""
+    """ Проверяем что можно добавить питомца с корректными данными """
 
     # Запрашиваем ключ api и сохраняем в переменую auth_key
     _, auth_key = pf.get_api_key(valid_email, valid_password)
@@ -136,7 +136,7 @@ def test_add_new_pet_with_invalid_pet_data(name='', animal_type='',
 
 def test_add_new_pet_without_pet_photo(name='Ниня', animal_type='Ориентальная кошка',
                                      age='1', pet_photo=''):
-    """Проверяем что можно добавить питомца без фото"""
+    """ Проверяем что можно добавить питомца без фото """
 
     # Запрашиваем ключ api и сохраняем в переменую auth_key
     _, auth_key = pf.get_api_key(valid_email, valid_password)
@@ -146,7 +146,7 @@ def test_add_new_pet_without_pet_photo(name='Ниня', animal_type='Ориен�
         pf.add_new_pet(auth_key, name, animal_type, age, pet_photo)
 
 def test_successful_delete_self_pet():
-    """Проверяем возможность удаления питомца"""
+    """ Проверяем возможность удаления питомца """
 
     # Получаем ключ auth_key и запрашиваем список своих питомцев
     _, auth_key = pf.get_api_key(valid_email, valid_password)
@@ -169,7 +169,7 @@ def test_successful_delete_self_pet():
     assert pet_id not in my_pets.values()
 
 def test_successful_update_self_pet_info(name='Плюша', animal_type='Британская кошка', age=3):
-    """Проверяем возможность обновления информации о питомце"""
+    """ Проверяем возможность обновления информации о питомце """
 
     # Получаем ключ auth_key и список своих питомцев
     _, auth_key = pf.get_api_key(valid_email, valid_password)
