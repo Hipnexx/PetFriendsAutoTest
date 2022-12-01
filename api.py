@@ -26,22 +26,6 @@ class PetFriends:
             result = res.text
         return status, result
 
-    def get_api_key_with_invalid_log_data(self, email: str, password: str) -> json:
-
-        headers = {
-            'email': "",
-            'password': "",
-        }
-
-        res = requests.get(self.base_url + 'api/key', headers=headers)
-        status = res.status_code
-        result = ""
-        try:
-            result = res.json()
-        except json.decoder.JSONDecodeError:
-            result = res.text
-        return status, result
-
     def get_list_of_pets(self, auth_key: json, filter: str = "") -> json:
         """Метод делает запрос к API сервера и возвращает статус запроса и результат в формате JSON
         со списком наденных питомцев, совпадающих с фильтром. На данный момент фильтр может иметь
