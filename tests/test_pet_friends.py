@@ -48,7 +48,7 @@ def test_get_all_pets_with_invalid_key(filter=''):
     assert status == 403
     print('\nТакого пользователя нет в системе!')
 
-def test_get_all_pets_with_wrong_parameter(filter='my_pet'):
+def test_get_all_pets_with_invalid_parameter(filter='my_pet'):
     """ Проверяем ответ от сервера при указании невалидного значения фильтра """
 
     # Отправляем запрос и сохраняем полученный ответ с кодом статуса в status, а текст ответа в result
